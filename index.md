@@ -18,3 +18,7 @@ hazard monitoring, disaster risk reduction, and early warning systems.
 ## Contact
 - Email: mtasnimmukarram@uiowa.edu ; phduiowa@gmail.com 
 - GitHub: https://github.com/Mirza9003
+## Curriculum Vitae
+
+📄 **[Download CV (PDF)](./Mirza_Md_Tasnim_Mukarram_CV.pdf)**
+
