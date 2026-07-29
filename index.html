@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirza Md Tasnim Mukarram — GeoAI &amp; Disaster Risk Research</title>
+<meta name="description" content="PhD researcher in geospatial AI, spatial machine learning, and satellite remote sensing for disaster risk reduction and early warning systems at the University of Iowa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0a1420;--night-2:#0f1e30;--night-3:#16293e;
+    --line:#25415e;--line-soft:#1b3049;
+    --gold:#ffcd00;--gold-dim:#c9a533;
+    --ice:#e8f0f7;--ice-2:#9db4cb;--ice-3:#5f7a96;
+    --signal:#5ad1c8;
+    --maxw:1180px;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--night);color:var(--ice);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .mono{font-family:var(--mono)}
+
+  /* layout: fixed left rail + content */
+  .shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+  .rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line-soft);background:var(--night-2);padding:34px 26px;display:flex;flex-direction:column;gap:30px}
+  .rail .id .name{font-family:var(--display);font-weight:600;font-size:1.15rem;line-height:1.15;letter-spacing:-.01em}
+  .rail .id .sub{font-family:var(--mono);font-size:11px;color:var(--gold-dim);letter-spacing:.14em;margin-top:8px;text-transform:uppercase}
+  .rail nav{display:flex;flex-direction:column;gap:2px}
+  .rail nav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--ice-2);padding:7px 10px;border-radius:4px;border-left:2px solid transparent;transition:.18s}
+  .rail nav a:hover{color:var(--gold);background:rgba(255,205,0,.05)}
+  .rail nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(255,205,0,.06)}
+  .rail .foot{margin-top:auto;font-family:var(--mono);font-size:10.5px;color:var(--ice-3);line-height:1.7}
+  .rail .foot img{height:22px;opacity:.85;margin-bottom:10px}
+
+  .content{min-width:0}
+  .wrap{max-width:var(--maxw);padding:0 46px}
+  section{padding:64px 0;border-bottom:1px solid var(--line-soft);scroll-margin-top:20px}
+  section:last-of-type{border-bottom:0}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-dim);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--gold-dim)}
+  h2.sec{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.015em}
+  .sec-lead{color:var(--ice-2);max-width:64ch;margin-top:12px}
+
+  /* hero */
+  .hero{padding-top:56px;position:relative;overflow:hidden}
+  .hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle at 78% 26%,#000,transparent 68%);-webkit-mask-image:radial-gradient(circle at 78% 26%,#000,transparent 68%);opacity:.5}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
+  .hero h1{font-family:var(--display);font-weight:600;font-size:clamp(2rem,3.4vw,3rem);line-height:1.06;letter-spacing:-.02em;margin:18px 0 16px}
+  .hero h1 .accent{color:var(--gold)}
+  .hero .role{font-family:var(--mono);font-size:13px;color:var(--ice-2);line-height:1.95;margin-bottom:22px}
+  .hero .role span{color:var(--signal)}
+  .hero p.lead{color:var(--ice-2);font-size:16px;max-width:46ch;margin-bottom:26px}
+  .cta-row{display:flex;gap:13px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;padding:12px 19px;border-radius:4px;transition:.2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--gold);color:#10151c;font-weight:600}
+  .btn-primary:hover{background:#ffd733;transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ice)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .hero-figure{position:relative}
+  .hero-figure .frame{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(0,0,0,.8)}
+  .hero-figure img{width:100%;object-fit:cover;aspect-ratio:4/3;filter:saturate(1.05) contrast(1.02)}
+  .hero-figure .corner{position:absolute;width:15px;height:15px;border:2px solid var(--gold)}
+  .c1{top:8px;left:8px;border-right:0;border-bottom:0}.c2{top:8px;right:8px;border-left:0;border-bottom:0}
+  .c3{bottom:8px;left:8px;border-right:0;border-top:0}.c4{bottom:8px;right:8px;border-left:0;border-top:0}
+  .hero-figure figcaption{font-family:var(--mono);font-size:10.5px;color:var(--ice-3);letter-spacing:.05em;margin-top:9px;display:flex;justify-content:space-between}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:44px;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden}
+  .stat{padding:22px;border-right:1px solid var(--line-soft);background:var(--night-2)}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--gold);line-height:1}
+  .stat .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ice-3);margin-top:7px}
+
+  /* focus cards */
+  .focus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px}
+  .focus-card{background:var(--night-2);border:1px solid var(--line-soft);border-radius:6px;padding:22px;transition:.2s}
+  .focus-card:hover{border-color:var(--line);transform:translateY(-2px)}
+  .focus-card .tag{font-family:var(--mono);font-size:10.5px;color:var(--gold-dim);letter-spacing:.1em}
+  .focus-card h3{font-family:var(--display);font-size:1.08rem;font-weight:500;margin:9px 0 7px}
+  .focus-card p{color:var(--ice-2);font-size:14px}
+
+  /* timeline (education/experience) */
+  .tl{margin-top:34px;position:relative;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .tl-item{position:relative;padding:0 0 26px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-24px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--night)}
+  .tl-item .when{font-family:var(--mono);font-size:11.5px;color:var(--gold-dim);letter-spacing:.03em}
+  .tl-item h3{font-family:var(--display);font-size:1.08rem;font-weight:500;margin:4px 0 3px}
+  .tl-item .where{color:var(--ice-2);font-size:14px}
+  .tl-item .desc{color:var(--ice-3);font-size:13.5px;margin-top:4px}
+
+  /* publications */
+  .pub{display:grid;grid-template-columns:112px 1fr;gap:22px;padding:22px 0;border-top:1px solid var(--line-soft);align-items:start}
+  .pub:first-of-type{border-top:0}
+  .pub-thumb{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--night-3)}
+  .pub-thumb img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+  .pub-thumb.noimg{display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;font-family:var(--mono);font-size:10px;color:var(--ice-3);text-align:center;padding:8px}
+  .pub-meta .venue{font-family:var(--mono);font-size:11px;color:var(--signal);letter-spacing:.04em}
+  .pub-meta .venue .yr{color:var(--ice-3)}
+  .pub-meta h3{font-family:var(--display);font-size:1.08rem;font-weight:500;line-height:1.3;margin:7px 0 6px}
+  .pub-meta .authors{font-size:13.5px;color:var(--ice-2)}
+  .pub-meta .authors b{color:var(--ice);font-weight:600}
+  .pub-links{display:flex;gap:14px;margin-top:10px;font-family:var(--mono);font-size:11.5px;align-items:center;flex-wrap:wrap}
+  .pub-links a{color:var(--gold-dim);border-bottom:1px solid transparent;transition:.2s;padding-bottom:2px}
+  .pub-links a:hover{color:var(--gold);border-color:var(--gold)}
+  .pill{font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:3px 8px;border:1px solid var(--line);border-radius:20px;color:var(--ice-3);text-transform:uppercase}
+  .pill.status{color:var(--signal);border-color:#2c5c58}
+
+  /* compact numbered list (conferences) */
+  .numlist{margin-top:30px;counter-reset:c}
+  .numlist li{list-style:none;position:relative;padding:14px 0 14px 44px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--ice-2)}
+  .numlist li:first-child{border-top:0}
+  .numlist li::before{counter-increment:c;content:counter(c,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:var(--mono);font-size:12px;color:var(--gold-dim)}
+  .numlist li b{color:var(--ice);font-weight:600}
+  .numlist li .v{font-family:var(--mono);font-size:11px;color:var(--signal);display:block;margin-top:3px}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+  .gallery figure{border:1px solid var(--line-soft);border-radius:5px;overflow:hidden;background:var(--night-3);position:relative;transition:.2s}
+  .gallery figure:hover{border-color:var(--gold-dim)}
+  .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .3s}
+  .gallery figure:hover img{transform:scale(1.04)}
+  .gallery figcaption{position:absolute;bottom:0;left:0;right:0;padding:7px 9px;background:linear-gradient(transparent,rgba(6,12,20,.92));font-family:var(--mono);font-size:10px;color:var(--ice-2)}
+
+  /* two-col lists (awards, workshops, leadership) */
+  .simplegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;margin-top:30px}
+  .simplegrid .row{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line-soft);font-size:14px;color:var(--ice-2)}
+  .simplegrid .row .mk{color:var(--gold);flex:none;font-family:var(--mono);font-size:12px;margin-top:2px}
+  .simplegrid .row b{color:var(--ice);font-weight:600}
+
+  /* review */
+  .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 30px;margin-top:30px}
+  .review-item{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line-soft);font-size:14px}
+  .review-item .date{font-family:var(--mono);font-size:11px;color:var(--gold-dim);min-width:70px}
+  .review-item .jrnl{color:var(--ice)}
+  .review-item .cnt{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ice-3)}
+
+  /* skills chips */
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+  .chip{font-family:var(--mono);font-size:12px;padding:7px 13px;border:1px solid var(--line-soft);border-radius:5px;color:var(--ice-2);background:var(--night-2)}
+  .chip.gold{border-color:var(--gold-dim);color:var(--gold)}
+
+  /* contact */
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .contact h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.1}
+  .contact .gold{color:var(--gold)}
+  .contact-list{font-family:var(--mono);font-size:13.5px}
+  .contact-list a{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line-soft);color:var(--ice-2);transition:.2s;align-items:center}
+  .contact-list a:hover{color:var(--gold);padding-left:6px}
+  .contact-list .k{color:var(--ice-3);min-width:86px;letter-spacing:.08em;text-transform:uppercase;font-size:10.5px}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* mobile */
+  .topbar{display:none}
+  @media(max-width:920px){
+    .shell{grid-template-columns:1fr}
+    .rail{position:fixed;top:0;left:0;right:0;height:auto;flex-direction:row;align-items:center;justify-content:space-between;padding:14px 20px;z-index:60;gap:12px}
+    .rail nav{display:none}
+    .rail .foot{display:none}
+    .rail.open nav{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--night-2);padding:14px 20px;border-bottom:1px solid var(--line)}
+    .menu-btn{display:block;background:none;border:1px solid var(--line);color:var(--ice);font-family:var(--mono);font-size:12px;padding:7px 11px;border-radius:4px;cursor:pointer}
+    .content{padding-top:64px}
+    .wrap{padding:0 22px}
+    .hero-inner{grid-template-columns:1fr;gap:30px}
+    .hero-figure{order:-1}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line-soft)}
+    .focus-grid,.simplegrid,.review-grid,.contact-inner{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+  }
+  .menu-btn{display:none}
+  @media(max-width:520px){.pub{grid-template-columns:1fr}.pub-thumb{max-width:120px}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- LEFT RAIL -->
+  <aside class="rail" id="rail">
+    <div class="id" style="display:flex;justify-content:space-between;align-items:flex-start;width:100%">
+      <div>
+        <div class="name">Mirza Md<br>Tasnim Mukarram</div>
+        <div class="sub">GeoAI · DRR Research</div>
+      </div>
+      <button class="menu-btn" onclick="document.getElementById('rail').classList.toggle('open')">MENU</button>
+    </div>
+    <nav id="nav">
+      <a href="#home" class="active">// Home</a>
+      <a href="#about">// About</a>
+      <a href="#focus">// Research Focus</a>
+      <a href="#education">// Education</a>
+      <a href="#experience">// Experience</a>
+      <a href="#publications">// Publications</a>
+      <a href="#conferences">// Conferences</a>
+      <a href="#gallery">// Research Gallery</a>
+      <a href="#awards">// Awards</a>
+      <a href="#review">// Peer Review</a>
+      <a href="#service">// Workshops &amp; Service</a>
+      <a href="#leadership">// Leadership</a>
+      <a href="#contact">// Contact</a>
+    </nav>
+    <div class="foot">
+      <img src="assets/img/iowa_gold.png" alt="University of Iowa"><br>
+      University of Iowa<br>Iowa City, IA · USA
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- HOME / HERO -->
+    <section id="home" class="hero">
+      <div class="hero-grid"></div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div class="reveal">
+            <div class="eyebrow">PhD Researcher · University of Iowa</div>
+            <h1>Turning Earth observation into <span class="accent">early warnings.</span></h1>
+            <div class="role">
+              <span>&gt;</span> GeoAI · Spatial Machine Learning · Satellite Remote Sensing<br>
+              <span>&gt;</span> Flood Risk · Drought Monitoring · Disaster Risk Reduction
+            </div>
+            <p class="lead">I build geospatial AI and deep-learning models on Earth-observation data to map hazards, monitor climate extremes, and drive decision-support for early warning systems.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="cv/Mirza_CV_Aug26.pdf" target="_blank">↓ Download CV</a>
+              <a class="btn btn-ghost" href="#publications">View Publications</a>
+            </div>
+          </div>
+          <figure class="hero-figure reveal">
+            <div class="frame">
+              <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+              <img src="assets/img/hero.jpg" alt="Mirza presenting GeoAI-based disaster risk and early warning research">
+            </div>
+            <figcaption><span>FIG.00 — GeoAI · DRR · Early Warning</span><span>IOWA CITY, IA</span></figcaption>
+          </figure>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><div class="num">15+</div><div class="lbl">Journal Articles</div></div>
+          <div class="stat"><div class="num">10+</div><div class="lbl">Conf. Presentations</div></div>
+          <div class="stat"><div class="num">10+</div><div class="lbl">Manuscripts Reviewed</div></div>
+          <div class="stat"><div class="num">5</div><div class="lbl">Degrees · 2 Countries</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about"><div class="wrap reveal">
+      <div class="eyebrow">About</div>
+      <h2 class="sec">Researcher in GeoAI &amp; hazard science</h2>
+      <p class="sec-lead">I am a PhD researcher specializing in geospatial artificial intelligence (GeoAI), spatial machine learning, and satellite remote sensing for disaster risk reduction, hazard monitoring, and early warning systems. My work fuses Earth-observation and climate datasets into predictive, decision-ready tools — from flood susceptibility maps to multi-depth drought dynamics across the U.S. Midwest.</p>
+      <div class="chips">
+        <span class="chip gold">Google Earth Engine</span><span class="chip gold">Python</span><span class="chip gold">ArcGIS</span>
+        <span class="chip">Deep Learning</span><span class="chip">Vision Transformers</span><span class="chip">Explainable AI</span>
+        <span class="chip">LiDAR</span><span class="chip">Landsat</span><span class="chip">SPSS</span><span class="chip">STATA</span>
+      </div>
+      <div style="margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--ice-2);line-height:2">
+        🎓 <b style="color:var(--ice)">Affiliation:</b> Dept. of Computer Science · School of Earth, Environment &amp; Sustainability, University of Iowa<br>
+        🤝 <b style="color:var(--ice)">Open to:</b> collaboration on GeoAI, DRR, and decision-support research<br>
+        📫 <b style="color:var(--ice)">Contact:</b> mtasnimmukarram@uiowa.edu
+      </div>
+    </div></section>
+
+    <!-- FOCUS -->
+    <section id="focus"><div class="wrap">
+      <div class="reveal"><div class="eyebrow">Research Focus</div><h2 class="sec">Where AI meets the changing Earth</h2></div>
+      <div class="focus-grid">
+        <div class="focus-card reveal"><div class="tag">01 · GEOAI</div><h3>Geospatial AI &amp; Deep Learning</h3><p>Vision transformers, ensemble learning, and explainable AI for land surface temperature, flood susceptibility, and climate prediction.</p></div>
+        <div class="focus-card reveal"><div class="tag">02 · REMOTE SENSING</div><h3>Earth Observation Analytics</h3><p>LiDAR, Landsat, and reanalysis data processed at scale in Google Earth Engine to decode land cover, urban heat, and hydrology.</p></div>
+        <div class="focus-card reveal"><div class="tag">03 · HAZARDS</div><h3>Flood &amp; Drought Intelligence</h3><p>Susceptibility mapping, crop-exposure assessment, and multi-depth soil-moisture drought dynamics across the KANI region.</p></div>
+        <div class="focus-card reveal"><div class="tag">04 · DECISION SUPPORT</div><h3>Early Warning Systems</h3><p>Frameworks fusing environmental datasets into actionable, socially-aware warnings for disaster risk reduction.</p></div>
+      </div>
+    </div></section>
+
+    <!-- EDUCATION -->
+    <section id="education"><div class="wrap reveal">
+      <div class="eyebrow">Education</div><h2 class="sec">Academic background</h2>
+      <div class="tl">
+        <div class="tl-item"><div class="when">Aug 2024 – Present · Iowa City, USA</div><h3>PhD, Geographic Information Science &amp; Cartography</h3><div class="where">University of Iowa</div></div>
+        <div class="tl-item"><div class="when">Aug 2025 – Aug 2027 (Expected) · Iowa City, USA</div><h3>Master's in Informatics</h3><div class="where">University of Iowa</div></div>
+        <div class="tl-item"><div class="when">March 2024 · Dhaka, Bangladesh</div><h3>PGD in Data Science</h3><div class="where">United International University (UIU)</div></div>
+        <div class="tl-item"><div class="when">July 2023 · Dhaka, Bangladesh</div><h3>Master's in Environmental Economics</h3><div class="where">Dhaka School of Economics, University of Dhaka</div></div>
+        <div class="tl-item"><div class="when">January 2019 · Dhaka, Bangladesh</div><h3>BSc in Civil &amp; Environmental Engineering</h3><div class="where">Military Institute of Science &amp; Technology (MIST)</div></div>
+      </div>
+    </div></section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience"><div class="wrap reveal">
+      <div class="eyebrow">Experience</div><h2 class="sec">Research &amp; professional roles</h2>
+      <div class="tl">
+        <div class="tl-item"><div class="when">June 2025 – Present · Iowa City, USA</div><h3>Graduate Research Assistant (GRA)</h3><div class="where">Iowa Technology Institute — NSF EPSCoR RII FEC (DAREWICCAR)</div><div class="desc">ML modeling of extreme weather (floods, droughts, heatwaves) in the KANI region; ML training workshops for undergraduates.</div></div>
+        <div class="tl-item"><div class="when">Aug 2024 – May 2025 · Iowa City, USA</div><h3>Graduate Teaching / Research Assistant</h3><div class="where">GIS Lab, School of Earth, Environment &amp; Sustainability</div><div class="desc">Student learning, assessment, and course delivery; research and scientific writing.</div></div>
+        <div class="tl-item"><div class="when">Feb 2021 – Aug 2024 · Dhaka, Bangladesh</div><h3>Associate Environmental Engineer</h3><div class="where">Bangladesh Army — HQ 24 Engineer Construction Brigade</div><div class="desc">Land cover mapping, vulnerability &amp; GHG reporting, military maps, and remote-sensing databases.</div></div>
+        <div class="tl-item"><div class="when">Jan 2020 – Jan 2021 · Dhaka, Bangladesh</div><h3>GIS &amp; Water Quality Specialist</h3><div class="where">Climate Change Laboratory, Green Laboratory Testing Services — BEPZA</div><div class="desc">Water/soil quality testing, confidential water-quality maps, and land suitability analysis.</div></div>
+        <div class="tl-item"><div class="when">Jan 2019 – Dec 2019 · Dhaka, Bangladesh</div><h3>Graduate Research Assistant (GRA)</h3><div class="where">Dept. of Civil Engineering, MIST</div><div class="desc">Land suitability analysis, GIS mapping, statistical analysis, and EIA consultancy.</div></div>
+      </div>
+    </div></section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications"><div class="wrap">
+      <div class="reveal"><div class="eyebrow">Peer-Reviewed Publications</div><h2 class="sec">Journal articles</h2>
+      <p class="sec-lead">Author name in <b style="color:var(--ice)">bold</b> denotes my contribution. Full list of 15 articles below — published, in revision, and under review.</p></div>
+
+      <div class="pub reveal"><div class="pub-thumb"><img src="assets/img/rcr_paper.png" alt=""></div><div class="pub-meta">
+        <div class="venue">Resources, Conservation &amp; Recycling <span class="yr">· 2023 · IF 13.2</span></div>
+        <h3>Perception of coastal citizens on community-based rainwater harvesting for sustainable water resource management</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Kafy, A.A., Rukiya, Q.U., Chowdhury, Md.A., Das</div>
+        <div class="pub-links"><a href="https://doi.org/10.1016/j.resconrec.2023.107196" target="_blank">DOI ↗</a><span class="pill">First Author</span><span class="pill status">Published</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb"><img src="assets/img/tac.png" alt=""></div><div class="pub-meta">
+        <div class="venue">Theoretical and Applied Climatology <span class="yr">· 2025 · 156(10):544</span></div>
+        <h3>Geostatistical assessment of spatial climate dynamics using mono-window ML for land cover and demographic shifts</h3>
+        <div class="authors">Miah, M.T., Fariha, J.N., Al Kafy, A., <b>Mukarram, M.Md.T.</b>, et al.</div>
+        <div class="pub-links"><a href="https://doi.org/10.1007/s00704-025-05750-2" target="_blank">DOI ↗</a><a href="assets/pdf/miah_2025_tac.pdf" target="_blank">PDF ↗</a><span class="pill status">Published</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb"><img src="assets/img/drought.png" alt=""></div><div class="pub-meta">
+        <div class="venue">Int. J. of Environmental Science &amp; Technology <span class="yr">· 2026 · 23:219</span></div>
+        <h3>Advanced hybrid ensemble learning models for atmospheric humidity prediction in arid regions</h3>
+        <div class="authors">Al Kafy, A.A., Nowrin, M.T., Altuwaijri, H.A., <b>Mukarram, M.M.T.</b></div>
+        <div class="pub-links"><a href="https://doi.org/10.1007/s13762-025-06926-z" target="_blank">DOI ↗</a><a href="assets/pdf/kafy_2026_humidity.pdf" target="_blank">PDF ↗</a><span class="pill status">Published</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb"><img src="assets/img/esrs.png" alt=""></div><div class="pub-meta">
+        <div class="venue">Energy Strategy Reviews <span class="yr">· 2024 · IF 8.2 · Elsevier</span></div>
+        <h3>Energy policy landscape in developing countries: a stern review and meta-analysis of Bangladesh</h3>
+        <div class="authors">Das, A., Shuvo, R.M., <b>Mukarram, M.M.T.</b>, Sharno, M.A.</div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">Published</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">SUSTAINABLE<br>CITIES &amp; SOCIETY</div><div class="pub-meta">
+        <div class="venue">Sustainable Cities and Society <span class="yr">· 2026</span></div>
+        <h3>Vision Transformer-based daytime land surface temperature modelling &amp; explainable green-roof cooling assessment using airborne LiDAR and satellite data</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Rukiya, Q.U., Linderman, M., Wang, J., Al Kafy, A.A.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">With Editor</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">THEORETICAL &amp;<br>APPLIED CLIMATOLOGY</div><div class="pub-meta">
+        <div class="venue">Theoretical and Applied Climatology <span class="yr">· 2026</span></div>
+        <h3>Depth-dependent soil moisture drought dynamics and vertical propagation in the State of Iowa</h3>
+        <div class="authors">Rukiya, Q.U., Linderman, M., <b>Mukarram, M.Md.T.</b></div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">Submitted</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">ENV. IMPACT<br>ASSESSMENT REVIEW</div><div class="pub-meta">
+        <div class="venue">Environmental Impact Assessment Review <span class="yr">· 2026</span></div>
+        <h3>Geospatial AI-based flood susceptibility mapping and urban flood risk assessment</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Linderman, M., Shokrana, S.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">Under Review</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">INT. J. FLOOD<br>RISK MANAGEMENT</div><div class="pub-meta">
+        <div class="venue">Int. J. of Flood Risk Management <span class="yr">· 2026</span></div>
+        <h3>Prioritizing agricultural flood mitigation: a GeoAI-driven assessment of susceptibility, crop exposure &amp; socioeconomic vulnerability</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Waleed, M., Rukiya, Q.U., Linderman, M., Demir, I.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">Under Review</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">GEOSYSTEMS &amp;<br>GEOENVIRONMENT</div><div class="pub-meta">
+        <div class="venue">Geosystems and Geoenvironment <span class="yr">· 2025 · Elsevier</span></div>
+        <h3>Harnessing machine learning, AI and remote sensing for drought severity assessment &amp; prediction in the USA</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Rukiya, Q.U., Linderman, M.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">2nd Revision</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">MODELING EARTH<br>SYSTEMS &amp; ENV.</div><div class="pub-meta">
+        <div class="venue">Modeling Earth Systems and Environment <span class="yr">· 2025</span></div>
+        <h3>AI-driven prediction of microclimate dynamics: a 20-year multi-model assessment across the U.S. Midwest (KANI region)</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Rukiya, Q.U., Linderman, M.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">2nd Revision</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">WATER RESOURCES<br>MANAGEMENT</div><div class="pub-meta">
+        <div class="venue">Water Resources Management <span class="yr">· 2025 · Springer</span></div>
+        <h3>IoT-enabled smart boat system for integrated water resource management</h3>
+        <div class="authors"><b>Mukarram, M.Md.T.</b>, Kafy, A.A., et al.</div>
+        <div class="pub-links"><span class="pill">First Author</span><span class="pill status">1st Revision</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">ENV. MONITORING<br>&amp; ASSESSMENT</div><div class="pub-meta">
+        <div class="venue">Environmental Monitoring and Assessment <span class="yr">· 2025</span></div>
+        <h3>Monitoring spatiotemporal changes in urban biophysical composition and LST dynamics in Saudi Arabia</h3>
+        <div class="authors">Kafy, A.A., …, <b>Mukarram, M.Md.T.</b></div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">Minor Revisions</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">GEOSCIENCE<br>LETTERS</div><div class="pub-meta">
+        <div class="venue">Geoscience Letters <span class="yr">· 2025 · Springer</span></div>
+        <h3>Quantifying urban heat island dynamics in arid environments: a 20-year remote sensing analysis</h3>
+        <div class="authors">Kafy, A.A., <b>Mukarram, M.Md.T.</b>, et al.</div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">Under Review</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">URBAN HEAT<br>ISLAND STUDY</div><div class="pub-meta">
+        <div class="venue">Two Decades of Urban Heat Island Evolution — Al Taif, Saudi Arabia <span class="yr">· 2025</span></div>
+        <h3>Two decades of urban heat island evolution in arid cities: Al Taif, Saudi Arabia</h3>
+        <div class="authors">Kafy, A.A., <b>Mukarram, M.Md.T.</b>, et al.</div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">1st Revision</span></div>
+      </div></div>
+
+      <div class="pub reveal"><div class="pub-thumb noimg">IN<br>PREPARATION</div><div class="pub-meta">
+        <div class="venue">Manuscript in preparation <span class="yr">· 2025</span></div>
+        <h3>Exploring safe water availability in southern coastal Bangladesh</h3>
+        <div class="authors">Khan, M.A.K., Ferdous, J., <b>Mukarram, M.Md.T.</b>, Nawshin, N., Rahman, M.T.U.</div>
+        <div class="pub-links"><span class="pill">Co-Author</span><span class="pill status">In Prep</span></div>
+      </div></div>
+    </div></section>
+
+    <!-- CONFERENCES -->
+    <section id="conferences"><div class="wrap reveal">
+      <div class="eyebrow">Conference Proceedings</div><h2 class="sec">Presentations &amp; talks</h2>
+      <ol class="numlist">
+        <li><b>GeoAI-driven climate resilience using LiDAR urban morphology and spatial deep learning.</b><span class="v">AAAS Annual EPSCoR Summit 2026 · LA, USA</span>Mukarram, M.M.T., Rukiya, Q.U., Linderman, M.A., Wang, J. (2026)</li>
+        <li><b>Advancing drought prediction in the Midwest US using remote sensing, ML models and explainable AI (XAI).</b><span class="v">AGU25</span>Mukarram, M.M.T., Rukiya, Q.U., Linderman, M.A. (2025)</li>
+        <li><b>Predicting future flood vulnerability zones in Texas using explainable GeoAI.</b><span class="v">AGU25</span>Shahrier, M., Al Kafy, A., Mukarram, M.M.T. (2025)</li>
+        <li><b>Probing the potential of green markets towards sustainable tourism development of Bangladesh.</b><span class="v">ICPACE, RUET, Bangladesh</span>Mukarram, M.M.T., Das, A. (2023)</li>
+        <li><b>Co-management of localized common pool natural resource: a sustainable fisheries management regime in Bangladesh.</b><span class="v">ICPACE, RUET, Bangladesh</span>Das, A., Mukarram, M.M.T. (2023)</li>
+        <li><b>Spatio-temporal variation of groundwater quality in Mongla Upazila using IDW.</b><span class="v">ICEEST 2020, Dhaka</span>Khan, M.A.K., Ferdous, J., Mukarram, M.M.T., et al. (2020)</li>
+        <li><b>Salinity intrusion in coastal Bangladesh: change in crop production system.</b><span class="v">4th ICSD 2020, Dhaka</span>Nawshin, N., Ferdous, J., Mukarram, M.M.T., Khan, M.A.K. (2020)</li>
+        <li><b>Exorbitant shrimp cultivation inhibiting agro-based livelihoods in Mongla Upazila.</b><span class="v">4th ICSD 2020, Dhaka</span>Mukarram, M.M.T., Khan, M.A.K., Ferdous, J., et al. (2020)</li>
+        <li><b>Local warming triggered by wetland loss in Dhaka city.</b><span class="v">4th ICSD 2020, Dhaka</span>Ferdous, J., Mukarram, M.M.T., Khan, M.A.K., Nawshin, N. (2020)</li>
+        <li><b>Sensor-based automated rooftop rainwater collection system and rainwater quality assessment of Dhaka city.</b><span class="v">ICACE-2020, CUET, Bangladesh</span>Khaled, A.M., Mukarram, M.M.T., et al. (2020)</li>
+      </ol>
+    </div></section>
+
+    <!-- GALLERY -->
+    <section id="gallery"><div class="wrap">
+      <div class="reveal"><div class="eyebrow">From the Research</div><h2 class="sec">Figures &amp; field work</h2></div>
+      <div class="gallery">
+        <figure class="reveal"><img src="assets/img/rcr_gabstract.jpg" alt="Graphical abstract"><figcaption>Graphical abstract · RC&amp;R</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/rcr_salinity.jpg" alt="Salinity mapping"><figcaption>Coastal salinity mapping</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/tac1.png" alt="LST GWR"><figcaption>LST · GWR analysis</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/tac2.png" alt="Land cover"><figcaption>Land cover dynamics</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/tac3.png" alt="Thermal env"><figcaption>Thermal environment</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/tac4.png" alt="Demographic"><figcaption>Demographic shifts</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/rcr_watertank.jpg" alt="Field setup"><figcaption>Field installation</figcaption></figure>
+        <figure class="reveal"><img src="assets/img/hero.jpg" alt="Conference talk"><figcaption>Conference talk</figcaption></figure>
+      </div>
+    </div></section>
+
+    <!-- AWARDS -->
+    <section id="awards"><div class="wrap reveal">
+      <div class="eyebrow">Awards &amp; Achievements</div><h2 class="sec">Recognition</h2>
+      <div class="simplegrid">
+        <div class="row"><span class="mk">★</span><span><b>NSF I-GUIDE Travel Award</b> — Summer School 2026: Spatial AI &amp; Convergence Science, Urbana-Champaign</span></div>
+        <div class="row"><span class="mk">★</span><span><b>AAAS Travel Award</b> — 2026 EPSCoR Summit, New Orleans, LA</span></div>
+        <div class="row"><span class="mk">★</span><span><b>Graduate Student Research Award 2025</b> — Martha L. Corry Fund for Geography, University of Iowa</span></div>
+        <div class="row"><span class="mk">★</span><span><b>Best Research Project Award 2018</b> — all engineering departments, MIST</span></div>
+        <div class="row"><span class="mk">★</span><span><b>Full-fund scholarship</b> — 5th Asia Pacific Youth Parliament for Water 2016, DGIST, South Korea</span></div>
+        <div class="row"><span class="mk">★</span><span><b>Full-fund scholarship</b> — 9th World Urban Forum as a Delegate, 2017</span></div>
+        <div class="row"><span class="mk">★</span><span><b>Cherag Roy Memorial Scholarship</b> — Wildlife Conservation, Bangladesh Python Project 2016</span></div>
+        <div class="row"><span class="mk">★</span><span><b>3rd Place, Bangladesh</b> — Int. Public Speaking Competition 2016 (ESU)</span></div>
+        <div class="row"><span class="mk">★</span><span><b>2nd Place</b> — Project Showcasing, Environment Fest 2018 (BUP)</span></div>
+        <div class="row"><span class="mk">★</span><span><b>2nd Place</b> — Nuclear Fest 2018 (MIST)</span></div>
+      </div>
+    </div></section>
+
+    <!-- PEER REVIEW -->
+    <section id="review"><div class="wrap reveal">
+      <div class="eyebrow">Editorial Service</div><h2 class="sec">Peer-review record</h2>
+      <p class="sec-lead">Manuscript reviewer across water, climate, health, and marine science journals — 10+ verified reviews.</p>
+      <div class="review-grid">
+        <div class="review-item"><span class="date">2025.02</span><span class="jrnl">Water Conservation Science &amp; Engineering</span><span class="cnt">1 ms</span></div>
+        <div class="review-item"><span class="date">2025.04</span><span class="jrnl">BMC Health Services Research</span><span class="cnt">1 ms</span></div>
+        <div class="review-item"><span class="date">2025.07</span><span class="jrnl">Discover Water</span><span class="cnt">1 ms</span></div>
+        <div class="review-item"><span class="date">2025.12</span><span class="jrnl">Discover Sustainability</span><span class="cnt">3 ms</span></div>
+        <div class="review-item"><span class="date">2026.01</span><span class="jrnl">Thalassas · Int. J. of Marine Sciences</span><span class="cnt">1 ms</span></div>
+        <div class="review-item"><span class="date">2026.01</span><span class="jrnl">Sustainable Water Resources Management</span><span class="cnt">1 ms</span></div>
+      </div>
+    </div></section>
+
+    <!-- SERVICE / WORKSHOPS -->
+    <section id="service"><div class="wrap reveal">
+      <div class="eyebrow">Workshops · Short Courses · Speaking</div><h2 class="sec">Training &amp; service</h2>
+      <div class="simplegrid">
+        <div class="row"><span class="mk">▪</span><span><b>Zero Hunger, Zero Emissions University Workshop</b> — ICCCAD / Univ. of Oxford ECI &amp; Oxfam BD (5 days)</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>City Energy &amp; Climate Action Plan Training</b> — Action Asia (7 days, Kuala Lumpur)</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Youth Advocacy for the SDGs</b> — Green Dialogue Series (Dhaka)</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Guest speaker &amp; facilitator</b> — VNEC Earth Carnival 2018, Dhaka</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Guest speaker &amp; facilitator</b> — Climate Change Resilience, Adaptation &amp; Mitigation, MIST</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Guest speaker &amp; facilitator</b> — Intro to Climate Change Science, Alpha Team, BUP</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Short courses:</b> Google Earth Engine · Statistical Data Analysis · STATA</span></div>
+        <div class="row"><span class="mk">▪</span><span><b>Short courses:</b> Urban Climate Change · Climate Resilient Cities (7th ICCCAD)</span></div>
+      </div>
+    </div></section>
+
+    <!-- LEADERSHIP -->
+    <section id="leadership"><div class="wrap reveal">
+      <div class="eyebrow">Leadership · Affiliations</div><h2 class="sec">Voluntary roles &amp; memberships</h2>
+      <div class="tl">
+        <div class="tl-item"><div class="when">Oct 2016 – June 2019</div><h3>Climate Educate Project</h3><div class="where">Regional Manager, South Asia · Project Advocacy Head, Bangladesh</div><div class="desc">Led climate-education workshops, trainings, and seminars in schools; project planning and communication.</div></div>
+        <div class="tl-item"><div class="when">2019</div><h3>Climate Mentor — Climathon (Global Climate Action Program)</h3><div class="where">Gen Lab · Program Management</div><div class="desc">Trained participants and managed events.</div></div>
+        <div class="tl-item"><div class="when">Ongoing</div><h3>Paper Abstract Reviewer</h3><div class="where">World Water Congress &amp; Exhibition — International Water Association (IWA)</div></div>
+      </div>
+      <div class="chips" style="margin-top:26px">
+        <span class="chip">IEB Member · A-23821</span><span class="chip">ACCCRN</span><span class="chip">Global Youth Climate Network</span><span class="chip">Journal Peer Reviewer (10+)</span>
+      </div>
+    </div></section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact"><div class="wrap"><div class="contact-inner">
+      <div class="reveal">
+        <div class="eyebrow">Open to Collaboration</div>
+        <h2>Let's build <span class="gold">early warning</span> tools that matter.</h2>
+        <p style="color:var(--ice-2);margin-top:16px;max-width:42ch">Open to research collaboration on GeoAI, disaster risk reduction, and decision-support systems.</p>
+      </div>
+      <div class="contact-list reveal">
+        <a href="mailto:mtasnimmukarram@uiowa.edu"><span class="k">Email</span> mtasnimmukarram@uiowa.edu</a>
+        <a href="https://mirza9003.github.io" target="_blank"><span class="k">Web</span> mirza9003.github.io</a>
+        <a href="https://github.com/Mirza9003" target="_blank"><span class="k">GitHub</span> @Mirza9003</a>
+        <a href="cv/Mirza_CV_Aug26.pdf" target="_blank"><span class="k">CV</span> Download PDF ↓</a>
+        <a href="#home"><span class="k">Affil.</span> Computer Science · SEES, University of Iowa</a>
+      </div>
+    </div></div></section>
+
+  </main>
+</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // active nav on scroll
+  const secs=[...document.querySelectorAll('section[id]')];
+  const links=[...document.querySelectorAll('#nav a')];
+  const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));}});},{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(s=>spy.observe(s));
+  // close mobile menu
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('rail').classList.remove('open')));
+</script>
+</body>
+</html>
